@@ -1,0 +1,54 @@
+# Apache .htaccess configuration for mojieblog.world (VitePress Static Site)
+# 启用静态文件 Clean URLs 重写、缓存优化与安全防护
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # 强制 HTTPS
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+  # 规范化唯一正式主域名 (301 重定向 www.mojieblog.world 到 mojieblog.world)
+  RewriteCond %{HTTP_HOST} ^www\.mojieblog\.world$ [NC]
+  RewriteRule ^(.*)$ https://mojieblog.world/$1 [R=301,L]
+
+  # 移除末尾斜杠（除根目录与实际目录外）
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+  # 如果请求的是 clean URL，在后台寻找对应的 .html 文件
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.*)$ $1.html [L]
+
+  # 404 自定义页面定向
+  ErrorDocument 404 /404.html
+</IfModule>
+
+# 开启 Gzip 压缩提升访问性能与 SEO 评分
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json application/xml image/svg+xml
+</IfModule>
+
+# 静态资源浏览器缓存策略 (Browser Caching)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 month"
+  ExpiresByType text/html "access plus 1 hour"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+</IfModule>
+
+# 安全防护响应头 (Security Headers)
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set X-XSS-Protection "1; mode=block"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

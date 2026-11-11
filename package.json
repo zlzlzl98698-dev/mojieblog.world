@@ -1,0 +1,28 @@
+{
+  "name": "mojieblog-world",
+  "version": "1.0.0",
+  "description": "魔戒博客 | mojieblog.world - 专业科学上网与网络加速可观测性智库，提供42家机场深度评测、节点测速、流媒体解锁报告与客户端实战指南",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs && npm run build:search",
+    "docs:preview": "vitepress preview docs",
+    "build:search": "pagefind --site docs/.vitepress/dist"
+  },
+  "keywords": [
+    "魔戒博客",
+    "机场推荐",
+    "科学上网",
+    "节点测速",
+    "IEPL专线",
+    "IPLC",
+    "Clash",
+    "Shadowrocket",
+    "VLESS"
+  ],
+  "author": "魔戒博客团队",
+  "license": "ISC",
+  "devDependencies": {
+    "vitepress": "^1.6.3",
+    "pagefind": "^1.3.0"
+  }
+}

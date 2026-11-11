@@ -1,0 +1,334 @@
+/* 魔戒博客 (mojieblog.world) 品牌化简白主题 + Dark Network Observatory 样式系统 */
+
+:root {
+  --vp-c-brand-1: #2563eb;
+  --vp-c-brand-2: #1d4ed8;
+  --vp-c-brand-3: #1e40af;
+  --vp-c-brand-soft: rgba(37, 99, 235, 0.08);
+
+  --vp-c-bg: #ffffff;
+  --vp-c-bg-alt: #f8fafc;
+  --vp-c-bg-elv: #ffffff;
+  --vp-c-bg-soft: #f1f5f9;
+
+  --vp-c-text-1: #0f172a;
+  --vp-c-text-2: #334155;
+  --vp-c-text-3: #64748b;
+
+  --vp-font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  --vp-font-family-mono: "JetBrains Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* 品牌头像 Logo 样式 (圆形发光微光圈) */
+.VPNavBarTitle .logo {
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  border: 2px solid #38bdf8 !important;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.4) !important;
+  margin-right: 10px !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.VPNavBarTitle:hover .logo {
+  transform: rotate(15deg) scale(1.08);
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.7) !important;
+}
+
+/* 页面主体清爽简白排版 */
+.VPDoc {
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+/* 放宽文档容器最大宽度，彻底消除宽表格与计算器受挤压导致的字符竖排 */
+.VPDoc:not(.has-aside) .content-container {
+  max-width: 1180px !important;
+}
+
+.VPDoc.has-aside .content-container {
+  max-width: 860px !important;
+}
+
+.VPDoc h1 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #0f172a;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0.75rem;
+}
+
+.VPDoc h2 {
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 0.5rem;
+}
+
+.VPDoc h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #334155;
+  margin-top: 1.75rem;
+}
+
+/* Dark Network Observatory 专用组件样式 (符合规范: 深灰蓝底色 + 霓虹绿高亮 + 等宽监控字) */
+.observatory-card {
+  background: #0b1120;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  color: #e2e8f0;
+  padding: 1.5rem;
+  margin: 1.75rem 0;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+  font-family: var(--vp-font-family-mono);
+}
+
+.observatory-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #1e293b;
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.observatory-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.observatory-badge {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.badge-measured {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+}
+
+.badge-spec {
+  background: rgba(56, 189, 248, 0.2);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+}
+
+.badge-review {
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+}
+
+/* 测速进度条与数据列 */
+.speed-bar-container {
+  margin: 0.85rem 0;
+}
+
+.speed-bar-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.speed-bar-label {
+  color: #f8fafc;
+  font-weight: 600;
+}
+
+.speed-bar-values {
+  color: #10b981;
+  font-weight: 700;
+}
+
+.speed-bar-track {
+  height: 8px;
+  background: #1e293b;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.speed-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981, #06b6d4);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+/* 解锁状态三列网格 */
+.unlock-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+@media (max-width: 640px) {
+  .unlock-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.unlock-cell {
+  background: #131d33;
+  border: 1px solid #1e293b;
+  border-radius: 6px;
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.unlock-service {
+  font-weight: 600;
+  color: #e2e8f0;
+  font-size: 0.9rem;
+}
+
+.status-tag {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+}
+
+.status-yes {
+  background: #064e3b;
+  color: #34d399;
+}
+
+.status-partial {
+  background: #78350f;
+  color: #fbbf24;
+}
+
+.status-no {
+  background: #7f1d1d;
+  color: #f87171;
+}
+
+/* 推广合规按钮样式 */
+.affiliate-box {
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.aff-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #2563eb;
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.65rem 1.75rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+}
+
+.aff-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 10px -1px rgba(37, 99, 235, 0.3);
+}
+
+.aff-disclaimer {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-top: 0.75rem;
+  line-height: 1.5;
+}
+
+/* 品牌库表格美化 */
+.brand-table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 1.5rem 0;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+}
+
+.brand-table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.9rem;
+  text-align: left;
+}
+
+.brand-table th {
+  background: #f8fafc;
+  color: #1e293b;
+  font-weight: 700;
+  padding: 0.9rem 0.85rem;
+  border-bottom: 2px solid #cbd5e1;
+  white-space: nowrap;
+}
+
+.brand-table td {
+  padding: 0.85rem 0.85rem;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.brand-table tr:hover {
+  background: #f8fafc;
+}
+
+/* 通用 Markdown 表格美化，防止挤压导致字符恶性竖向折行 */
+.VPDoc table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  margin: 1.5rem 0;
+}
+
+.VPDoc table th {
+  background: #f8fafc;
+  color: #1e293b;
+  font-weight: 700;
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid #cbd5e1;
+  white-space: nowrap;
+}
+
+.VPDoc table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+.VPDoc table tr:last-child td {
+  border-bottom: none;
+}
